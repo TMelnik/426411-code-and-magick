@@ -1,7 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
 * Студент: [Tatiana Melnikova Zavarikina](https://up.htmlacademy.ru/javascript/13/user/426411).
-* Наставник: `Неизвестно`.
+* Наставник: [Роман Мисюрин](538267).
 
 ---
 
