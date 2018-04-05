@@ -11,9 +11,7 @@ var FONT_GAP = 50;
 var COLUMN_WIDTH = 40;
 var BAR_HEIGHT = 150;
 var TEXT_HEIGHT = 16;
-var barWidth  = FONT_GAP + COLUMN_WIDTH;
-
-var names = ['Вы','Иван','Юлия','Катя'];
+var BAR_WIDTH  = FONT_GAP + COLUMN_WIDTH;
 
 var renderCloud = function(ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -23,12 +21,12 @@ var renderCloud = function(ctx, x, y, color) {
 var getMaxElement = function(arr) {
 var maxElement = arr[0];
 
-for (var i = 0; i < arr.length; i++) {
+for (var i =  0; i < arr.length; i++) {
   if (arr[i] > maxElement) {
     maxElement = arr[i];
     }
-  return maxElement;
   }
+  return maxElement;
 };
 
 window.renderStatistics = function(ctx, players, times) {
@@ -45,18 +43,16 @@ window.renderStatistics = function(ctx, players, times) {
   ctx.fillText('Список результатов:', CLOUD_X + GAP, CONGRATULATION_Y +GAP*2);
 
   for (var i = 0; i < players.length; i++) {
-    ctx.fillText(Math.floor(times[i]), CLOUD_X + GAP + barWidth * i, CLOUD_HEIGHT +  -  GAP*3 -(BAR_HEIGHT* times[i])/maxTime);
-     if(names[i]=== 'Вы') {
-       ctx.fillStyle = 'rgba(255,0,0,1)';
-       ctx.fillRect(CLOUD_X + GAP + barWidth * i, CLOUD_HEIGHT - GAP*2 -(BAR_HEIGHT* times[i])/maxTime, COLUMN_WIDTH, (BAR_HEIGHT* times[i])/maxTime);
+    ctx.fillText(Math.floor(times[i]), CLOUD_X + GAP + BAR_WIDTH * i, CLOUD_HEIGHT +  -  GAP*3 -(BAR_HEIGHT* times[i])/maxTime);
 
-       }else {
-         ctx.fillStyle = '#0000FF';
-         ctx.fillRect(CLOUD_X + GAP + barWidth * i, CLOUD_HEIGHT - GAP*2 -(BAR_HEIGHT* times[i])/maxTime, COLUMN_WIDTH, (BAR_HEIGHT* times[i])/maxTime);
-
+    if (players[i] === 'Вы') {
+      ctx.fillStyle = 'rgba(255,0,0,1)';
+    } else {
+      ctx.fillStyle = '#0000FF';
       }
+    ctx.fillRect(CLOUD_X + GAP + BAR_WIDTH * i, CLOUD_HEIGHT - GAP*2 -(BAR_HEIGHT* times[i])/maxTime, COLUMN_WIDTH, (BAR_HEIGHT* times[i])/maxTime);
 
-      ctx.fillStyle = '#000000';
-      ctx.fillText(names[i], CLOUD_X + GAP + (FONT_GAP + COLUMN_WIDTH)* i, CLOUD_HEIGHT);
+    ctx.fillStyle = '#000000';
+    ctx.fillText(players[i], CLOUD_X + GAP + (FONT_GAP + COLUMN_WIDTH)* i, CLOUD_HEIGHT);
   }
 };
