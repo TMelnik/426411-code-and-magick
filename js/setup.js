@@ -47,34 +47,45 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-    //var  wizards = [wizard1, wizard2, wizard3, wizard4]
-
     var wizard = {
-        name: function (WIZARD_NAME){
+        name: function (WIZARD_NAMES){
           var randomIndexName = Math.floor(Math.random()*WIZARD_NAMES.length);
           return WIZARD_NAMES[randomIndexName]
         },
         surname: function (WIZARD_SURNAME){
           var randomIndexSurname = Math.floor(Math.random()*WIZARD_SURNAME.length);
-        var wizardSurname = WIZARD_SURNAME[randomIndexName];
+          return WIZARD_SURNAME[randomIndexSurname];
         },
         coatColor: function (COAT_COLOR){
           var randomIndexCoat = Math.floor(Math.random()*COAT_COLOR.length);
-          return COAT_COLOR[randomIndexName];
+          return COAT_COLOR[randomIndexCoat];
         },
         eyesColor: function () {
           var randomIndexEyes = Math.floor(Math.random()*EYES_COLOR.length);
-          return EYES_COLOR[randomIndexName];
+          return EYES_COLOR[randomIndexEyes];
       }
     }
+
+var wizards = [];
+
+for (var i =0; i < 4; i++){
+  var wizardFiller = {};
+  wizardFiller.name = wizard.name(WIZARD_NAMES);
+  wizardFiller.surname = wizard.surname(WIZARD_SURNAME);
+  wizardFiller.coatColor = wizard.coatColor(COAT_COLOR);
+  wizardFiller.eyesColor = wizard.eyesColor(EYES_COLOR);
+
+  wizard[i] = wizardFiller;
+
+}
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
 
-  wizardElement.querySelector('.setup-similar-label').textContent = wizards.name(WIZARD_NAME));
-  wizardElement.querySelector('.wizard-coat').style.fill = wizards.coatColor);
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizards.eyesColor);
+  wizardElement.querySelector('.setup-similar-label').textContent = wizards.name + wizards.surname;
+  wizardElement.querySelector('.wizard-coat').style.fill = wizards.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizards.eyesColor;
 
 
   return wizardElement;
