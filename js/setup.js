@@ -1,10 +1,66 @@
 // Файл setup.js
 'use strict';
 
-var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита' , 'Вашингтон'];
-var WIZARD_SURNAME = ['да Марья', 'Верон', 'Хуан Себастьян', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)','rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
+var WIZARD_NAMES = [
+  'Иван ',
+  'Хуан Себастьян ',
+  'Мария ',
+  'Кристоф ',
+  'Виктор ',
+  'Юлия ',
+  'Люпита ',
+  'Вашингтон '
+];
+var WIZARD_SURNAME = [
+  'да Марья',
+  'Верон',
+  'Хуан Себастьян',
+  'Мирабелла',
+  'Вальц',
+  'Онопко',
+  'Топольницкая',
+  'Нионго',
+  'Ирвинг'
+];
+var COAT_COLOR = [
+  'rgb(101, 137, 164)',
+  'rgb(241, 43, 107)',
+  'rgb(146, 100, 161)',
+  'rgb(56, 159, 117)',
+  'rgb(215, 210, 55)',
+  'rgb(0, 0, 0)'
+];
+var EYES_COLOR = [
+  'black',
+  'red',
+  'blue',
+  'yellow',
+  'green'
+];
+
+var buildWizard = function (){
+
+  var wizard = {
+    name: function getRandomElement (WIZARD_NAMES) {
+            var randomIndex = Math.floor(Math.random()*WIZARD_NAMES.length);
+            return NAME = WIZARD_NAMES[randomIndex] + WIZARD_SURNAME[randomIndex];
+          },
+    surname: function getRandomElement (WIZARD_SURNAME) {
+            var randomIndex = Math.floor(Math.random()*WIZARD_SURNAME.length);
+            return SURNAM = WIZARD_SURNAME[randomIndex];
+          },
+
+    coatColor: function getRandomElement (COAT_COLOR) {
+            var randomIndex = Math.floor(Math.random()*COAT_COLOR.length);
+            return COAT_COLOR[randomIndex];
+          },
+
+    eyesColor: function getRandomElement (EYES_COLOR) {
+            var randomIndex = Math.floor(Math.random()*EYES_COLOR.length);
+            return EYES_COLOR[randomIndex];
+          }
+    }
+}
 
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
@@ -15,35 +71,14 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-var wizards = [
-  {
-    name: WIZARD_NAMES[0] + WIZARD_SURNAME[0],
-    coatColor: coatColor[0],
-    eyesColor: eyesColor[0]
-  },
-  {
-    name: WIZARD_NAMES[1] + WIZARD_SURNAME[0],
-    coatColor: coatColor[1],
-    eyesColor: eyesColor[1]
-  },
-  {
-    name: WIZARD_NAMES[2] + WIZARD_SURNAME[0],
-    coatColor: coatColor[2],
-    eyesColor: eyesColor[2]
-  },
-  {
-    name: WIZARD_NAMES[3] + WIZARD_SURNAME[0],
-    coatColor: coatColor[3],
-    eyesColor: eyesColor[3]
-  }
-]
+
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
-  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name(NAME) + wizard.surname(WIZARD_NAMES);
+  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor(COAT_COLOR);
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor(EYES_COLOR);
 
   return wizardElement;
 }
