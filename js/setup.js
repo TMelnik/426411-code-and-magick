@@ -47,7 +47,6 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-
 function getRendomElement(array){
   var index = Math.floor(Math.random()*array.length);
   return array[index];
@@ -57,6 +56,7 @@ var wizards = [];
 
 for (var i =0; i < 4; i++){
   var wizardFiller = {};
+
   wizardFiller.name = getRendomElement(WIZARD_NAMES);
   wizardFiller.surname = getRendomElement(WIZARD_SURNAME);
   wizardFiller.coatColor =getRendomElement(COAT_COLOR);
