@@ -37,6 +37,15 @@ var EYES_COLOR = [
   'yellow',
   'green'
 ];
+var FIREBALL_COLOR = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
@@ -47,19 +56,23 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-function getRendomElement(array){
-  var index = Math.floor(Math.random()*array.length);
+var setup = document.querySelector('.setup');
+var setupSimilar = setup.querySelector('.setup-similar');
+setupSimilar.classList.remove('hidden');
+
+function getRendomElement(array) {
+  var index = Math.floor(Math.random() * array.length);
   return array[index];
 }
 
 var wizards = [];
 
-for (var i =0; i < 4; i++){
+for (var i = 0; i < 4; i++) {
   var wizardFiller = {};
 
   wizardFiller.name = getRendomElement(WIZARD_NAMES);
   wizardFiller.surname = getRendomElement(WIZARD_SURNAME);
-  wizardFiller.coatColor =getRendomElement(COAT_COLOR);
+  wizardFiller.coatColor = getRendomElement(COAT_COLOR);
   wizardFiller.eyesColor = getRendomElement(EYES_COLOR);
 
   wizards[i] = wizardFiller;
@@ -76,8 +89,69 @@ var renderWizard = function (wizard) {
 }
 
 var fragment = document.createDocumentFragment();
-for (var i = 0; i < wizards.length; i++) {
-  fragment.appendChild(renderWizard(wizards[i]));
+for (var j = 0; j < wizards.length; j++) {
+  fragment.appendChild(renderWizard(wizards[j]));
 }
 similarListElement.appendChild(fragment);
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+
+// Открытие/закрытие окна настройки персонажа
+
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = document.querySelector('.setup-close');
+var userName = document.querySelector('.setup-user-name');
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+function onPopupEscPress(evt) {
+  if (evt.keyCode === ESC_KEYCODE && document.activeElement !== userName) {
+    closePopup();
+  }
+}
+
+function openPopup() {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+}
+
+function closePopup() {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+}
+
+// Изменение характеристик персонажа по нажатию
+var playerPerson = document.querySelector('.setup-player');
+var playerCoat = playerPerson.querySelector('.wizard-coat');
+var playerEyes = playerPerson.querySelector('.wizard-eyes');
+var playerFireball = playerPerson.querySelector('.setup-fireball-wrap');
+
+playerCoat.addEventListener('click', function () {
+  playerCoat.style.fill = getRendomElement(COAT_COLOR);
+});
+
+playerEyes.addEventListener('click', function () {
+  playerEyes.style.fill = getRendomElement(COAT_COLOR);
+});
+
+playerFireball.addEventListener('click', function () {
+  playerFireball.style.backgroundColor = getRendomElement(FIREBALL_COLOR);
+});
