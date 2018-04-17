@@ -57,8 +57,8 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .querySelector('.setup-similar-item');
 
 var setup = document.querySelector('.setup');
-var setupSimilar = setup.querySelector('.setup-similar');
-setupSimilar.classList.remove('hidden');
+// var setupSimilar = setup.querySelector('.setup-similar');
+// setupSimilar.classList.remove('hidden');
 
 function getRendomElement(array) {
   var index = Math.floor(Math.random() * array.length);
