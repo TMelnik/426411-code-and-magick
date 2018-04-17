@@ -149,7 +149,7 @@ playerCoat.addEventListener('click', function () {
 });
 
 playerEyes.addEventListener('click', function () {
-  playerEyes.style.fill = getRendomElement(COAT_COLOR);
+  playerEyes.style.fill = getRendomElement(EYES_COLOR);
 });
 
 playerFireball.addEventListener('click', function () {
