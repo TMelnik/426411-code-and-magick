@@ -138,20 +138,31 @@ function closePopup() {
   document.removeEventListener('keydown', onPopupEscPress);
 }
 
+
 // Изменение характеристик персонажа по нажатию
 var playerPerson = document.querySelector('.setup-player');
 var playerCoat = playerPerson.querySelector('.wizard-coat');
 var playerEyes = playerPerson.querySelector('.wizard-eyes');
 var playerFireball = playerPerson.querySelector('.setup-fireball-wrap');
 
+var coatInput = document.querySelector('.coat-color');
+var eyesInput = document.querySelector('.eyes-color');
+var fireballInput = document.querySelector('.fireball-color');
+
 playerCoat.addEventListener('click', function () {
-  playerCoat.style.fill = getRendomElement(COAT_COLOR);
+  var coatColor = getRendomElement(COAT_COLOR);
+  playerCoat.style.fill = coatColor;
+  coatInput.value = coatColor;
 });
 
 playerEyes.addEventListener('click', function () {
-  playerEyes.style.fill = getRendomElement(EYES_COLOR);
+  var eyesColor = getRendomElement(EYES_COLOR);
+  playerEyes.style.fill = eyesColor;
+  eyesInput.value = eyesColor;
 });
 
 playerFireball.addEventListener('click', function () {
-  playerFireball.style.backgroundColor = getRendomElement(FIREBALL_COLOR);
+  var fireballColor = getRendomElement(FIREBALL_COLOR);
+  playerFireball.style.backgroundColor = fireballColor;
+  fireballInput.value = fireballColor;
 });
